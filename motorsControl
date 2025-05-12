@@ -1,0 +1,116 @@
+/*Comando do arduino*
+f - marcha à frente
+a - marcha atras
+p - pára
+e - motores esquerdos em frente
+d - motores direitos em frente
+h - Motores esquerdos em marcha atrás
+i - Motores direitos em marcha atrás
+*/
+ //A sequência da direção de movimento e velocidade
+ //é a seguinte: in1 = HIGH e in2 = 100, 
+ //quer dizer, direção em frente, velocidade 100;
+ //Se escrevermos in1 = 100 e in2 = HIGH, 
+ //direção marcha atrás e velocidade 100;
+ //Tudo LOW quer dizer os motores estao parados
+
+//motor esquerdo 
+#define in1 5 
+#define in2 6 
+ 
+//motor direito
+#define in3 9 
+#define in4 10 
+
+//LED
+#define LedESQ 4
+#define LedDIR 7
+
+
+void setup(){
+ Serial.begin(9600);
+ pinMode(in1,OUTPUT);
+ pinMode(in2,OUTPUT);
+ pinMode(in3,OUTPUT);
+ pinMode(in4,OUTPUT);
+ pinMode(LedESQ,OUTPUT);
+ pinMode(LedDIR,OUTPUT);
+}
+ 
+void loop(){
+  if (Serial.available() > 0) {
+    int inByte = Serial.read();
+  switch (inByte) {
+  case 'f':
+//ambos - marcha à frente
+ Serial.println("motores em frente");
+ analogWrite(in1,HIGH);
+ analogWrite(in2,100);
+ analogWrite(in3,HIGH);
+ analogWrite(in4,100);
+     break;
+ case 'a':
+ Serial.println("motores em marcha atrás");
+ analogWrite(in1,100);
+ analogWrite(in2,HIGH);
+ analogWrite(in3,100);
+ analogWrite(in4,HIGH);
+ break;
+ case 'p':
+ Serial.println("motores parados"); 
+ digitalWrite(in1,LOW);
+ digitalWrite(in2,0);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+ digitalWrite(in3,LOW);
+ digitalWrite(in4,0);
+ break;
+ case 'e':
+ Serial.println("Motores Esquerdos em frente"); 
+ analogWrite(in1,HIGH);
+ analogWrite(in2,100);
+ analogWrite(in3,LOW);
+ analogWrite(in4,LOW);
+ Serial.println("LED esquerdo");
+ digitalWrite(LedESQ,HIGH);
+ digitalWrite(LedDIR,LOW);
+ break;
+ case 'd':
+ Serial.println("Motores direitos em frente"); 
+ analogWrite(in1,LOW);
+ analogWrite(in2,LOW);
+ analogWrite(in3,HIGH);
+ analogWrite(in4,100);
+ Serial.println("LED direito");
+ digitalWrite(LedESQ,LOW);
+ digitalWrite(LedDIR,HIGH);
+ break;
+ case 'h':
+ Serial.println("Motores esquerdos em marcha atrás"); 
+ analogWrite(in1,100);
+ analogWrite(in2,HIGH);
+ analogWrite(in3,LOW);
+ analogWrite(in4,LOW);
+ Serial.println("LED esquerdo");
+ digitalWrite(LedESQ,LOW);
+ digitalWrite(LedDIR,HIGH);
+ break;
+ case 'i':
+ Serial.println("Motores direitos em marcha atrás"); 
+ analogWrite(in1,LOW);
+ analogWrite(in2,LOW);
+ analogWrite(in3,100);
+ analogWrite(in4,HIGH);
+ Serial.println("LED direito");
+ digitalWrite(LedESQ,HIGH);
+ digitalWrite(LedDIR,LOW);
+ break;
+ default:
+ analogWrite(in1,LOW);
+ analogWrite(in2,LOW);
+ analogWrite(in3,LOW);
+ analogWrite(in4,LOW);
+ digitalWrite(LedESQ,LOW);
+ digitalWrite(LedDIR,LOW);
+ }
+}
+delay(2000);
+}
