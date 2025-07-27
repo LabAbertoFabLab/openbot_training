@@ -5,3 +5,8 @@ Uma excelente referência: https://www.hackster.io/mitov/measure-motor-speed-rpm
 O próximo desfio é a utilização do sonar.
 
 Uma excelente referência: https://dronebotworkshop.com/hc-sr04-ultrasonic-distance-sensor-arduino/
+
+mais: https://randomnerdtutorials.com/arduino-free-guides-sensors-modules/
+mais: https://www.openbot.org/
+
+SUing chat GPT for coding: https://dronebotworkshop.com/chatgpt/
